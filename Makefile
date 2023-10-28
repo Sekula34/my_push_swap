@@ -23,16 +23,17 @@ OBJS := $(SOURCE:%.c=%.o)
 	$(CC) $(COMP_FLAGS) -c $< -o $@
 
 $(NAME): push_swap.h $(OBJS)
-	cd libft && $(MAKE) && $(MAKE) bonus 
-	$(CC) $(COMP_FLAGS) -o $(NAME) $(OBJS) ./libft/libft.a
+	@cd libft && $(MAKE) --no-print-directory && $(MAKE) --no-print-directory bonus
+	@$(CC) $(COMP_FLAGS) -o $(NAME) $(OBJS) ./libft/libft.a 
+
 
 .PHONY: clean fclean re all
 
 all: $(NAME)
 
 clean:
-	cd libft && $(MAKE) fclean
-	rm -f $(OBJS)
+	@cd libft --no-print-directory && $(MAKE) --no-print-directory fclean
+	@rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
